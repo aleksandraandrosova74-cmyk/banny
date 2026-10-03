@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="uk" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>coffi.banny.odessa — Затишна кав'ярня в Одесі</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        khaki: {
+                            50: '#F5F7F4',
+                            100: '#E6EBE3',
+                            200: '#CAD5C5',
+                            300: '#A1B39B',
+                            DEFAULT: '#78866B',
+                            600: '#5F6B54',
+                            700: '#4A5D4E',
+                            800: '#39453C',
+                        },
+                        pink: {
+                            soft: '#FFF0F5',
+                            light: '#F8C8DC',
+                            DEFAULT: '#FFB6C1',
+                            accent: '#F39DB0',
+                            deep: '#E2738E',
+                        },
+                        mint: {
+                            light: '#E8F8F5',
+                            DEFAULT: '#A3E4D7',
+                            dark: '#76D7C4',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #F8F9F6 0%, #FFF3F7 40%, #F0FBF8 100%);
+            background-attachment: fixed;
+            color: #2D3748;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(248, 200, 220, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(120, 134, 107, 0.12);
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px -12px rgba(243, 157, 176, 0.3);
+            border-color: rgba(243, 157, 176, 0.8);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F5F7F4;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #FFB6C1;
+            border-radius: 9999px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #E2738E;
+        }
+
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+
+        .floating-element {
+            animation: floatSlow 5s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .promo-pulse {
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-pink-light selection:text-khaki-800">
+
+    <header class="sticky top-0 z-40 glass-panel shadow-sm border-b border-pink-light/40">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-khaki via-khaki-600 to-pink-accent flex items-center justify-center shadow-md group-hover:scale-105 transition-transform p-1">
+                    <!-- Cute Bunny + Coffee Cup SVG -->
+                    <svg class="w-full h-full text-white fill-current" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Bunny Left Ear -->
+                        <path d="M22 6 C17 6, 15 16, 19 26 C21 28, 25 24, 25 18 C25 12, 23 6, 22 6 Z" fill="#FFF0F5" />
+                        <path d="M22 9 C19 9, 18 15, 20 22 C21 23, 23 21, 23 17 C23 13, 22 9, 22 9 Z" fill="#FFB6C1" />
+                        <!-- Bunny Right Ear -->
+                        <path d="M32 4 C27 4, 26 15, 29 26 C31 28, 35 24, 35 16 C35 8, 33 4, 32 4 Z" fill="#FFF0F5" />
+                        <path d="M32 7 C29 7, 28 14, 30 22 C31 23, 33 21, 33 15 C33 10, 32 7, 32 7 Z" fill="#FFB6C1" />
+                        <!-- Head -->
+                        <circle cx="27" cy="30" r="10" fill="#FFF0F5" />
+                        <!-- Cute Eyes & Nose -->
+                        <circle cx="23" cy="29" r="1.2" fill="#4A5D4E" />
+                        <circle cx="30" cy="29" r="1.2" fill="#4A5D4E" />
+                        <path d="M26 32 Q27 33 28 32" stroke="#E2738E" stroke-width="1" fill="none" stroke-linecap="round" />
+                        <!-- Coffee Mug -->
+                        <path d="M28 36 L48 36 C50 36, 52 38, 51 42 L48 56 C47 59, 44 61, 39 61 L34 61 C29 61, 27 59, 26 56 L24 44 C24 39, 26 36, 28 36 Z" fill="#FFFFFF" />
+                        <path d="M48 40 C53 40, 54 44, 51 48 C49 51, 46 50, 46 50" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round"/>
+                        <!-- Coffee Steam Heart -->
+                        <path d="M35 32 Q37 27 35 24 C33 22, 38 22, 38 25 Q38 30 35 32 Z" fill="#FFB6C1" />
+                        <path d="M41 33 Q43 29 41 27 C40 25, 44 25, 44 27 Q44 31 41 33 Z" fill="#A3E4D7" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold bg-gradient-to-r from-khaki-800 via-pink-deep to-khaki tracking-tight block leading-none">coffi.banny.odessa</span>
+                    <span class="text-[10px] text-khaki-600 font-semibold tracking-widest uppercase">Odessa Coffee & Matcha Bar</span>
+                </div>
+            </a>
+
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 font-semibold text-gray-700 text-sm">
+                <a href="#hero" class="hover:text-pink-deep transition-colors" data-i18n="nav_home">Головна</a>
+                <a href="#menu" class="hover:text-pink-deep transition-colors" data-i18n="nav_menu">Меню</a>
+                <a href="#offers" class="hover:text-pink-deep transition-colors" data-i18n="nav_offers">Акція -20%</a>
+                <a href="#contacts" class="hover:text-pink-deep transition-colors" data-i18n="nav_contacts">Контакти</a>
+            </nav>
+
+            <!-- Language Switcher & Cart Trigger -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Language Selector -->
+                <div class="relative">
+                    <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-white/90 border border-pink-light text-gray-700 text-xs sm:text-sm font-bold rounded-xl focus:ring-pink-accent focus:border-pink-accent block p-2 sm:p-2.5 pr-6 cursor-pointer shadow-sm outline-none appearance-none">
+                        <option value="ua">🇺🇦 UA</option>
+                        <option value="en">🇬🇧 EN</option>
+                        <option value="pl">🇵🇱 PL</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500 text-xs">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- Shopping Cart Button -->
+                <button onclick="toggleCartDrawer(true)" class="relative bg-gradient-to-r from-khaki to-pink-accent hover:from-khaki-600 hover:to-pink-deep text-white p-2.5 sm:p-3 rounded-2xl shadow-md hover:shadow-lg transition-all flex items-center justify-center group">
+                    <i class="fa-solid fa-basket-shopping text-base sm:text-lg group-hover:scale-110 transition-transform"></i>
+                    <span id="cartCountBadge" class="absolute -top-2 -right-2 bg-pink-deep text-white text-[11px] font-black rounded-full h-5 w-5 sm:h-6 sm:w-6 flex items-center justify-center border-2 border-white shadow-md">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION -->
+        <section id="hero" class="relative py-12 md:py-20 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <!-- Hero Text Content -->
+                    <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-soft/80 border border-pink-light/60 text-pink-deep text-xs sm:text-sm font-bold shadow-sm">
+                            <i class="fa-solid fa-heart text-pink-accent text-xs"></i>
+                            <span data-i18n="hero_badge">Затишна кав'ярня в Одесі • вул. Чорноморська 23</span>
+                        </div>
+                        
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-gray-900 leading-tight">
+                            <span data-i18n="hero_title1">Ніжний смак кави &</span> <br/>
+                            <span class="text-transparent bg-clip-text bg-gradient-to-r from-khaki-700 via-pink-deep to-khaki" data-i18n="hero_title2">одеський затишок</span>
+                        </h1>
+                        
+                        <p class="text-gray-600 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed" data-i18n="hero_desc">
+                            Ароматна кава свіжого обсмажування, ніжна матча, какао та авторські чаї. Налаштовуй свій напій: обирай розміри S/M/L, сиропи, корицю, шоколад та рослинне молоко!
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+                            <a href="#menu" class="px-8 py-4 rounded-2xl bg-gradient-to-r from-khaki to-khaki-700 text-white font-bold text-center shadow-lg hover:shadow-khaki/30 hover:scale-[1.02] transition-all" data-i18n="btn_menu">
+                                Переглянути меню
+                            </a>
+                            <a href="#offers" class="px-8 py-4 rounded-2xl bg-white/90 border-2 border-pink-accent text-pink-deep font-bold text-center shadow-sm hover:bg-pink-soft transition-all" data-i18n="btn_promo">
+                                Акція -20% при замовленні 4-6 напоїв
+                            </a>
+                        </div>
+
+                        <!-- Mini Highlights -->
+                        <div class="pt-6 grid grid-cols-3 gap-2 sm:gap-4 max-w-md mx-auto lg:mx-0 text-center">
+                            <div class="p-3 rounded-2xl bg-white/60 border border-pink-light/30">
+                                <p class="text-xs text-gray-500 font-medium" data-i18n="highlight_1_title">Розміри</p>
+                                <p class="text-sm font-extrabold text-khaki-700">S • M • L</p>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-white/60 border border-pink-light/30">
+                                <p class="text-xs text-gray-500 font-medium" data-i18n="highlight_2_title">Акція</p>
+                                <p class="text-sm font-extrabold text-pink-deep">-20% Discount</p>
+                            </div>
+                            <div class="p-3 rounded-2xl bg-white/60 border border-pink-light/30">
+                                <p class="text-xs text-gray-500 font-medium" data-i18n="highlight_3_title">Доставка</p>
+                                <p class="text-sm font-extrabold text-mint-dark">Одеса</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hero Visual Card -->
+                    <div class="lg:col-span-5 flex justify-center">
+                        <div class="relative w-full max-w-sm">
+                            <!-- Background Glowing Circles -->
+                            <div class="w-64 h-64 rounded-full bg-pink-light/50 absolute -top-10 -left-10 -z-10 blur-2xl"></div>
+                            <div class="w-64 h-64 rounded-full bg-mint/50 absolute -bottom-10 -right-10 -z-10 blur-2xl"></div>
+                            
+                            <div class="glass-card p-6 sm:p-8 rounded-3xl relative border-2 border-white/80 shadow-2xl floating-element">
+                                <div class="flex items-center justify-between pb-4 border-b border-pink-light/30">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-2xl bg-pink-soft flex items-center justify-center text-pink-deep text-2xl shadow-inner">
+                                            ☕
+                                        </div>
+                                        <div>
+                                            <h4 class="font-bold text-gray-800 text-sm" data-i18n="hero_card_title">Фірмовий Бaнні Мокка</h4>
+                                            <p class="text-[11px] text-gray-500">coffi.banny.odessa</p>
+                                        </div>
+                                    </div>
+                                    <span class="bg-mint text-emerald-800 text-[10px] font-black px-2.5 py-1 rounded-full uppercase tracking-wider">Must Try</span>
+                                </div>
+
+                                <div class="my-6 text-center py-6 bg-gradient-to-b from-pink-soft/20 via-white/40 to-mint-light/20 rounded-2xl border border-white">
+                                    <div class="text-7xl mb-3 drop-shadow-md">🐰☕</div>
+                                    <h3 class="text-xl font-extrabold text-gray-800" data-i18n="hero_card_item_title">Banny Special Mocha</h3>
+                                    <p class="text-xs text-gray-500 mt-1 max-w-xs mx-auto" data-i18n="hero_card_item_desc">Подвійний еспресо, ніжна молочна піна, бельгійський шоколад та кокосовий сироп</p>
+                                    <p class="text-2xl font-black text-khaki-700 mt-4">75 ₴ <span class="text-xs font-normal text-gray-400">(Size M)</span></p>
+                                </div>
+
+                                <button onclick="quickAddSpecial()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-pink-accent to-pink-deep text-white font-bold text-sm shadow-md hover:shadow-lg hover:scale-[1.01] transition-all flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-plus-circle"></i>
+                                    <span data-i18n="btn_quick_add">Замовити Banny Special</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- PROMO OFFER BANNER -->
+        <section id="offers" class="py-8">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="promo-pulse bg-gradient-to-r from-khaki-700 via-khaki to-pink-accent rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-6 border-2 border-white/40">
+                    <div class="absolute -right-8 -bottom-10 opacity-15 text-white text-9xl font-black pointer-events-none select-none">20%</div>
+                    
+                    <div class="space-y-3 text-center lg:text-left z-10 max-w-2xl">
+                        <div class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-3 py-1 rounded-xl text-xs font-bold uppercase tracking-wider text-pink-soft">
+                            <i class="fa-solid fa-fire text-yellow-300"></i>
+                            <span data-i18n="promo_badge">Супер Пропозиція</span>
+                        </div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold leading-snug" data-i18n="promo_title">
+                            Замовляй від 4 до 6 напоїв та отримуй 20% знижки!
+                        </h2>
+                        <p class="text-white/90 text-xs sm:text-sm leading-relaxed" data-i18n="promo_desc">
+                            Збирайся з друзями або замовляй каву на офіс! Знижка 20% нараховується автоматично у кошику, коли загальна кількість напоїв у замовленні становить 4, 5 або 6 штучки.
+                        </p>
+                    </div>
+
+                    <div class="z-10 flex-shrink-0">
+                        <a href="#menu" class="px-8 py-4 rounded-2xl bg-white text-khaki-800 font-extrabold text-sm shadow-md hover:bg-pink-soft hover:text-pink-deep transition-all inline-block" data-i18n="promo_btn">
+                            Обрати 4-6 напоїв
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MENU SECTION -->
+        <section id="menu" class="py-16">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-10">
+                    <span class="text-xs font-extrabold tracking-widest text-pink-deep uppercase" data-i18n="menu_top_label">Смачне Меню</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-1" data-i18n="menu_title">Наші Напої</h2>
+                    <p class="text-gray-600 text-sm sm:text-base mt-2" data-i18n="menu_subtitle">Обирай свій улюблений напій, кастомізуй розмір та додавай улюблені топінги</p>
+                </div>
+
+                <!-- Menu Category Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12">
+                    <button onclick="filterMenu('all')" class="cat-btn active px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-khaki text-white shadow-md" data-cat="all" data-i18n="cat_all">Усі напої</button>
+                    <button onclick="filterMenu('coffee')" class="cat-btn px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-white text-gray-700 hover:bg-pink-soft/50 border border-gray-200" data-cat="coffee" data-i18n="cat_coffee">☕ Кава</button>
+                    <button onclick="filterMenu('tea')" class="cat-btn px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-white text-gray-700 hover:bg-pink-soft/50 border border-gray-200" data-cat="tea" data-i18n="cat_tea">🍵 Чай & Матча</button>
+                    <button onclick="filterMenu('cocoa')" class="cat-btn px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-white text-gray-700 hover:bg-pink-soft/50 border border-gray-200" data-cat="cocoa" data-i18n="cat_cocoa">🍫 Какао & Шоколад</button>
+                </div>
+
+                <!-- Drinks Grid -->
+                <div id="menuGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Dynamic Menu Items Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACTS & LOCATION SECTION -->
+        <section id="contacts" class="py-16 bg-white/60 backdrop-blur-md border-t border-pink-light/30">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    
+                    <div class="lg:col-span-6 space-y-6">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-xl bg-khaki/20 text-khaki-800 font-bold text-xs uppercase tracking-wider">
+                            <i class="fa-solid fa-map-pin"></i>
+                            <span data-i18n="contacts_badge">Завітайте до нас</span>
+                        </div>
+                        
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900" data-i18n="contacts_title">Завжди раді вам в Одесі!</h2>
+                        <p class="text-gray-600 text-sm sm:text-base leading-relaxed" data-i18n="contacts_desc">
+                            Чекаємо на вас за адресою вул. Чорноморська 23. Затишна атмосфера, ароматна кава та гарний настрій гарантовані!
+                        </p>
+
+                        <div class="space-y-4 pt-2">
+                            <!-- Address Card -->
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-gray-100">
+                                <div class="w-12 h-12 rounded-2xl bg-pink-soft text-pink-deep flex items-center justify-center flex-shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-location-dot"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm" data-i18n="addr_title">Адреса:</h4>
+                                    <p class="text-gray-600 text-sm font-medium">вулиця Чорноморська 23, Одеса, Україна</p>
+                                    <span class="text-xs text-khaki-600 font-semibold" data-i18n="addr_hours">Графік: Щодня з 08:00 до 21:00</span>
+                                </div>
+                            </div>
+
+                            <!-- Manager Phone Card -->
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-gray-100">
+                                <div class="w-12 h-12 rounded-2xl bg-khaki-100 text-khaki-700 flex items-center justify-center flex-shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm" data-i18n="phone_title">Телефон Менеджера:</h4>
+                                    <a href="tel:+380183764923" class="text-base font-extrabold text-pink-deep hover:underline">+380 18 376 4923</a>
+                                    <p class="text-xs text-gray-400" data-i18n="phone_subtitle">Приймаємо замовлення та бронювання</p>
+                                </div>
+                            </div>
+
+                            <!-- Social Links Card -->
+                            <div class="flex items-start gap-4 p-4 rounded-2xl bg-white shadow-sm border border-gray-100">
+                                <div class="w-12 h-12 rounded-2xl bg-mint-light text-emerald-700 flex items-center justify-center flex-shrink-0 text-xl font-bold">
+                                    <i class="fa-solid fa-hashtag"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-900 text-sm" data-i18n="social_title">Наші Соцмережі:</h4>
+                                    <div class="flex flex-wrap gap-2 mt-2">
+                                        <a href="https://www.tiktok.com/@banny_of.odessa" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gray-900 text-white text-xs font-bold hover:bg-gray-800 transition-colors shadow-sm">
+                                            <i class="fa-brands fa-tiktok"></i> TikTok: banny_of.odessa
+                                        </a>
+                                        <a href="https://www.instagram.com/banny.odessa" target="_blank" class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gradient-to-r from-purple-500 via-pink-500 to-yellow-500 text-white text-xs font-bold hover:opacity-90 transition-opacity shadow-sm">
+                                            <i class="fa-brands fa-instagram"></i> Instagram: banny.odessa
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Visual Card -->
+                    <div class="lg:col-span-6">
+                        <div class="glass-card rounded-3xl p-8 text-center relative overflow-hidden border-2 border-white shadow-xl bg-cover bg-center" style="background-image: linear-gradient(rgba(255,255,255,0.88), rgba(255,255,255,0.88)), url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=800&q=80');">
+                            <div class="w-20 h-20 rounded-full bg-pink-accent text-white mx-auto flex items-center justify-center text-3xl shadow-lg mb-4 animate-bounce">
+                                <i class="fa-solid fa-mug-hot"></i>
+                            </div>
+                            <h3 class="text-2xl font-extrabold text-gray-900">coffi.banny.odessa</h3>
+                            <p class="text-sm font-semibold text-khaki-700 mt-1">Одеса, вул. Чорноморська 23</p>
+                            <p class="text-xs text-gray-500 max-w-sm mx-auto mt-3" data-i18n="map_text">
+                                Чекаємо на вас щодня! Насолоджуйтесь затишною атмосферою біля моря з фірмовою кавою.
+                            </p>
+                            <a href="https://maps.google.com/?q=Chornomorska+St+23+Odessa" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-xl bg-khaki text-white font-bold text-xs hover:bg-khaki-700 transition-colors shadow">
+                                <i class="fa-solid fa-map-location-dot mr-1"></i> Відкрити на Карті
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 py-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-khaki to-pink-accent flex items-center justify-center text-white text-lg font-bold">
+                    🐰
+                </div>
+                <div>
+                    <span class="font-extrabold text-white text-base block">coffi.banny.odessa</span>
+                    <span class="text-[10px] text-gray-400">Вулиця Чорноморська 23, Одеса</span>
+                </div>
+            </div>
+
+            <p class="text-xs text-gray-500 text-center">
+                © 2026 coffi.banny.odessa. Усі права захищено.
+            </p>
+
+            <div class="flex items-center gap-4 text-lg">
+                <a href="https://www.tiktok.com/@banny_of.odessa" target="_blank" class="text-gray-400 hover:text-pink-light transition-colors"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://www.instagram.com/banny.odessa" target="_blank" class="text-gray-400 hover:text-pink-light transition-colors"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SHOPPING CART SLIDE-OVER DRAWER -->
+    <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer(false)"></div>
+
+        <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
+            <div class="pointer-events-auto w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+                
+                <!-- Drawer Header -->
+                <div class="p-6 border-b border-gray-100 flex items-center justify-between bg-gradient-to-r from-pink-soft to-mint-light">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-white flex items-center justify-center text-pink-deep shadow-sm">
+                            <i class="fa-solid fa-basket-shopping text-lg"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-extrabold text-gray-900" data-i18n="cart_title">Ваше Замовлення</h2>
+                            <p class="text-[11px] text-gray-500" data-i18n="cart_subtitle">coffi.banny.odessa</p>
+                        </div>
+                    </div>
+                    <button onclick="toggleCartDrawer(false)" class="text-gray-400 hover:text-gray-600 p-2 rounded-full hover:bg-white/80 transition-colors">
+                        <i class="fa-solid fa-xmark text-xl"></i>
+                    </button>
+                </div>
+
+                <!-- Promo Alert Banner Inside Cart -->
+                <div id="cartPromoBanner" class="m-4 p-3.5 rounded-2xl text-xs font-semibold transition-all">
+                    <!-- Injected dynamically via JS -->
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cartItemsContainer" class="flex-grow overflow-y-auto px-6 py-2 space-y-4">
+                    <!-- Dynamic Cart Items Injected Here -->
+                </div>
+
+                <!-- Drawer Summary & Checkout -->
+                <div class="p-6 border-t border-gray-100 bg-gray-50/80 space-y-3">
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span data-i18n="cart_subtotal">Сума замовлення:</span>
+                        <span id="cartSubtotal" class="font-bold text-gray-800">0 ₴</span>
+                    </div>
+
+                    <div id="discountRow" class="flex justify-between text-xs text-emerald-600 font-bold hidden">
+                        <span data-i18n="cart_discount">Знижка за акцією (20%):</span>
+                        <span id="cartDiscountAmount">-0 ₴</span>
+                    </div>
+
+                    <div class="flex justify-between text-base font-black text-gray-900 pt-2 border-t border-gray-200">
+                        <span data-i18n="cart_total">Разом до сплати:</span>
+                        <span id="cartTotal" class="text-khaki-700">0 ₴</span>
+                    </div>
+
+                    <button id="checkoutBtn" onclick="openCheckoutModal()" disabled class="w-full py-4 rounded-2xl bg-gradient-to-r from-khaki to-pink-accent hover:from-khaki-700 hover:to-pink-deep text-white font-extrabold text-sm shadow-lg transition-all disabled:opacity-40 disabled:cursor-not-allowed mt-2">
+                        <span data-i18n="btn_checkout">Оформити замовлення</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- CHECKOUT MODAL -->
+    <div id="checkoutModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-md hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative max-h-[90vh] overflow-y-auto">
+            
+            <button onclick="closeCheckoutModal()" class="absolute top-5 right-5 text-gray-400 hover:text-gray-600 p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <!-- Checkout Form Step -->
+            <div id="checkoutFormStep">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-10 h-10 rounded-2xl bg-pink-soft text-pink-deep flex items-center justify-center text-xl font-bold">
+                        📋
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-extrabold text-gray-900" data-i18n="checkout_title">Деталі замовлення</h3>
+                        <p class="text-xs text-gray-500" data-i18n="checkout_subtitle">Вкажіть ваші дані для підтвердження</p>
+                    </div>
+                </div>
+
+                <form onsubmit="handleOrderSubmit(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="field_name">Ваше Ім'я *</label>
+                        <input type="text" id="custName" required placeholder="Наприклад: Олена" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-accent outline-none text-sm font-medium">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="field_phone">Номер телефону *</label>
+                        <input type="tel" id="custPhone" required placeholder="+380 97 123 4567" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-accent outline-none text-sm font-medium">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="field_delivery">Спосіб отримання</label>
+                        <select id="custDelivery" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-accent outline-none text-sm font-semibold">
+                            <option value="pickup" data-i18n="opt_pickup">Самовивіз (вул. Чорноморська 23)</option>
+                            <option value="courier" data-i18n="opt_courier">Кур'єрська доставка по Одесі</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="field_payment">Оплата</label>
+                        <select id="custPayment" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-accent outline-none text-sm font-semibold">
+                            <option value="cash" data-i18n="opt_cash">Готівкою при отриманні</option>
+                            <option value="card" data-i18n="opt_card">Карткою (Terminal/Online)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-gray-700 uppercase mb-1" data-i18n="field_notes">Коментар</label>
+                        <textarea id="custNotes" rows="2" placeholder="Додаткові побажання..." class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:ring-2 focus:ring-pink-accent outline-none text-sm font-medium"></textarea>
+                    </div>
+
+                    <div class="bg-pink-soft/30 p-4 rounded-2xl border border-pink-light/60 space-y-1.5 my-4">
+                        <div class="flex justify-between text-xs text-gray-600">
+                            <span data-i18n="summary_items_count">Кількість напоїв:</span>
+                            <span id="summaryCount" class="font-bold text-gray-800">0</span>
+                        </div>
+                        <div class="flex justify-between text-base font-extrabold text-gray-900 pt-1 border-t border-pink-light/40">
+                            <span data-i18n="summary_final_total">Разом:</span>
+                            <span id="summaryTotal" class="text-pink-deep">0 ₴</span>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-khaki to-khaki-700 text-white font-extrabold text-sm shadow-lg hover:opacity-95 transition-all">
+                        <span data-i18n="btn_confirm_order">Підтвердити замовлення</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Order Success Step / Simulated Receipt -->
+            <div id="checkoutSuccessStep" class="hidden text-center py-4 space-y-4">
+                <div class="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 mx-auto flex items-center justify-center text-4xl shadow-inner">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+                <h3 class="text-2xl font-extrabold text-gray-900" data-i18n="receipt_thanks">Дякуємо за замовлення!</h3>
+                <p class="text-xs text-gray-600 max-w-xs mx-auto" data-i18n="receipt_msg">Ваше замовлення прийняте. Менеджер готує найкращу каву для вас!</p>
+
+                <!-- Simulated Printable Receipt -->
+                <div class="bg-amber-50/60 p-5 rounded-2xl text-left font-mono text-xs text-gray-800 border border-amber-200/60 my-4 space-y-2 shadow-sm">
+                    <div class="text-center border-b border-dashed border-gray-300 pb-2">
+                        <p class="font-extrabold text-sm">coffi.banny.odessa</p>
+                        <p class="text-[10px] text-gray-500">вул. Чорноморська 23, Одеса</p>
+                        <p class="text-[10px] text-gray-500">Тел: +380183764923</p>
+                    </div>
+                    <div class="pt-2">
+                        <p><span>ЧЕК №:</span> <span id="recNum" class="font-bold">#8492</span></p>
+                        <p><span>Клієнт:</span> <span id="recName" class="font-bold">-</span></p>
+                        <p><span>Телефон:</span> <span id="recPhone">-</span></p>
+                        <p><span>Отримання:</span> <span id="recDelivery">-</span></p>
+                    </div>
+                    <div id="recItemsList" class="border-t border-b border-dashed border-gray-300 py-2 space-y-1">
+                        <!-- Injected items -->
+                    </div>
+                    <div class="pt-1 flex justify-between font-bold text-sm">
+                        <span>ДО СПЛАТИ:</span>
+                        <span id="recTotal" class="text-pink-deep">0 ₴</span>
+                    </div>
+                </div>
+
+                <button onclick="closeCheckoutModal(); clearCart();" class="w-full py-3.5 rounded-2xl bg-pink-accent hover:bg-pink-deep text-white font-bold text-xs transition-colors">
+                    <span data-i18n="btn_close_receipt">Закрити</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // --- LOCALIZATION DICTIONARY (UA, EN, PL) ---
+        const translations = {
+            ua: {
+                nav_home: "Головна",
+                nav_menu: "Меню",
+                nav_offers: "Акція -20%",
+                nav_contacts: "Контакти",
+                hero_badge: "Затишна кав'ярня в Одесі • вул. Чорноморська 23",
+                hero_title1: "Ніжний смак кави &",
+                hero_title2: "одеський затишок",
+                hero_desc: "Ароматна кава свіжого обсмажування, ніжна матча, какао та авторські чаї. Налаштовуй свій напій: обирай розміри S/M/L, сиропи, корицю, шоколад та рослинне молоко!",
+                btn_menu: "Переглянути меню",
+                btn_promo: "Акція -20% при замовленні 4-6 напоїв",
+                highlight_1_title: "Розміри",
+                highlight_2_title: "Акція",
+                highlight_3_title: "Доставка",
+                hero_card_title: "Фірмовий Банні Мокка",
+                hero_card_item_title: "Banny Special Mocha",
+                hero_card_item_desc: "Подвійний еспресо, ніжна молочна піна, бельгійський шоколад та кокосовий сироп",
+                btn_quick_add: "Замовити Banny Special",
+                promo_badge: "Супер Пропозиція",
+                promo_title: "Замовляй від 4 до 6 напоїв та отримуй 20% знижки!",
+                promo_desc: "Збирайся з друзями або замовляй каву на офіс! Знижка 20% нараховується автоматично у кошику, коли загальна кількість напоїв у замовленні становить 4, 5 або 6 штучки.",
+                promo_btn: "Обрати 4-6 напоїв",
+                menu_top_label: "Смачне Меню",
+                menu_title: "Наші Напої",
+                menu_subtitle: "Обирай свій улюблений напій, кастомізуй розмір та додавай улюблені топінги",
+                cat_all: "Усі напої",
+                cat_coffee: "☕ Кава",
+                cat_tea: "🍵 Чай & Матча",
+                cat_cocoa: "🍫 Какао & Шоколад",
+                contacts_badge: "Завітайте до нас",
+                contacts_title: "Завжди раді вам в Одесі!",
+                contacts_desc: "Чекаємо на вас за адресою вул. Чорноморська 23. Затишна атмосфера, ароматна кава та гарний настрій гарантовані!",
+                addr_title: "Адреса:",
+                addr_hours: "Графік: Щодня з 08:00 до 21:00",
+                phone_title: "Телефон Менеджера:",
+                phone_subtitle: "Приймаємо замовлення та бронювання",
+                social_title: "Наші Соцмережі:",
+                map_text: "Чекаємо на вас щодня! Насолоджуйтесь затишною атмосферою біля моря з фірмовою кавою.",
+                cart_title: "Ваше Замовлення",
+                cart_subtitle: "coffi.banny.odessa",
+                cart_subtotal: "Сума замовлення:",
+                cart_discount: "Знижка за акцією (20%):",
+                cart_total: "Разом до сплати:",
+                btn_checkout: "Оформити замовлення",
+                checkout_title: "Деталі замовлення",
+                checkout_subtitle: "Вкажіть ваші дані для підтвердження",
+                field_name: "Ваше Ім'я *",
+                field_phone: "Номер телефону *",
+                field_delivery: "Спосіб отримання",
+                opt_pickup: "Самовивіз (вул. Чорноморська 23)",
+                opt_courier: "Кур'єрська доставка по Одесі",
+                field_payment: "Оплата",
+                opt_cash: "Готівкою при отриманні",
+                opt_card: "Карткою (Terminal/Online)",
+                field_notes: "Коментар",
+                summary_items_count: "Кількість напоїв:",
+                summary_final_total: "Разом:",
+                btn_confirm_order: "Підтвердити замовлення",
+                receipt_thanks: "Дякуємо за замовлення!",
+                receipt_msg: "Ваше замовлення прийняте. Менеджер готує найкращу каву для вас!",
+                btn_close_receipt: "Закрити",
+                size_label: "Розмір стакана:",
+                addons_label: "Сиропи та додаткові інгредієнти:",
+                addon_vanilla: "Ванільний сироп (+12₴)",
+                addon_caramel: "Карамельний сироп (+12₴)",
+                addon_hazelnut: "Горіховий сироп (+12₴)",
+                addon_coconut: "Кокосовий сироп (+12₴)",
+                addon_cinnamon: "Кориця (+0₴)",
+                addon_chocolate: "Шоколадна стружка (+8₴)",
+                addon_sugar: "Цукор (+0₴)",
+                addon_ice: "Лід (+0₴)",
+                addon_plantmilk: "Рослинне молоко (Вівсяне/Мигдальне) (+18₴)",
+                btn_add_to_cart: "Додати в кошик"
+            },
+            en: {
+                nav_home: "Home",
+                nav_menu: "Menu",
+                nav_offers: "Special -20%",
+                nav_contacts: "Contacts",
+                hero_badge: "Cozy Coffee Shop in Odessa • 23 Chornomorska St",
+                hero_title1: "Delicate Coffee Taste &",
+                hero_title2: "Odessa Comfort",
+                hero_desc: "Freshly roasted coffee, silky matcha, cocoa, and signature tea. Customize your drink: choose S/M/L sizes, syrups, cinnamon, chocolate shavings, and plant-based milk!",
+                btn_menu: "Explore Menu",
+                btn_promo: "20% Discount on 4-6 Drinks",
+                highlight_1_title: "Sizes",
+                highlight_2_title: "Offer",
+                highlight_3_title: "Delivery",
+                hero_card_title: "Signature Banny Mocha",
+                hero_card_item_title: "Banny Special Mocha",
+                hero_card_item_desc: "Double espresso, silky foam milk, Belgian chocolate & coconut syrup",
+                btn_quick_add: "Order Banny Special",
+                promo_badge: "Super Offer",
+                promo_title: "Order 4 to 6 drinks and get a 20% discount!",
+                promo_desc: "Gather your friends or order coffee for the office! A 20% discount applies automatically in your shopping cart when ordering between 4 and 6 drinks.",
+                promo_btn: "Pick 4-6 Drinks",
+                menu_top_label: "Delicious Menu",
+                menu_title: "Our Drinks",
+                menu_subtitle: "Select your favorite drink, adjust size, and add delicious toppings",
+                cat_all: "All Drinks",
+                cat_coffee: "☕ Coffee",
+                cat_tea: "🍵 Tea & Matcha",
+                cat_cocoa: "🍫 Cocoa & Chocolate",
+                contacts_badge: "Visit Us",
+                contacts_title: "Always Happy to See You in Odessa!",
+                contacts_desc: "We are waiting for you at 23 Chornomorska Street. Cozy atmosphere, supreme coffee, and high spirits guaranteed!",
+                addr_title: "Address:",
+                addr_hours: "Hours: Open daily 08:00 AM - 09:00 PM",
+                phone_title: "Manager Phone:",
+                phone_subtitle: "Order intake & reservations",
+                social_title: "Our Social Media:",
+                map_text: "We welcome you every day! Enjoy the cozy seaside vibes with signature coffee.",
+                cart_title: "Your Order",
+                cart_subtitle: "coffi.banny.odessa",
+                cart_subtotal: "Subtotal:",
+                cart_discount: "Special Discount (20%):",
+                cart_total: "Total Amount:",
+                btn_checkout: "Proceed to Checkout",
+                checkout_title: "Order Details",
+                checkout_subtitle: "Please enter your details to confirm",
+                field_name: "Your Name *",
+                field_phone: "Phone Number *",
+                field_delivery: "Fulfillment Method",
+                opt_pickup: "Pick-up (23 Chornomorska St)",
+                opt_courier: "Courier Delivery in Odessa",
+                field_payment: "Payment Method",
+                opt_cash: "Cash on delivery",
+                opt_card: "Card (Terminal/Online)",
+                field_notes: "Order Notes",
+                summary_items_count: "Total Drinks:",
+                summary_final_total: "Total:",
+                btn_confirm_order: "Confirm Order",
+                receipt_thanks: "Thank You for Your Order!",
+                receipt_msg: "Your order has been received. Our barista is preparing the finest coffee for you!",
+                btn_close_receipt: "Close",
+                size_label: "Cup Size:",
+                addons_label: "Syrups & Extra Add-ons:",
+                addon_vanilla: "Vanilla Syrup (+12₴)",
+                addon_caramel: "Caramel Syrup (+12₴)",
+                addon_hazelnut: "Hazelnut Syrup (+12₴)",
+                addon_coconut: "Coconut Syrup (+12₴)",
+                addon_cinnamon: "Cinnamon (+0₴)",
+                addon_chocolate: "Chocolate Flakes (+8₴)",
+                addon_sugar: "Sugar (+0₴)",
+                addon_ice: "Ice (+0₴)",
+                addon_plantmilk: "Plant Milk (Oat/Almond) (+18₴)",
+                btn_add_to_cart: "Add to Cart"
+            },
+            pl: {
+                nav_home: "Główna",
+                nav_menu: "Menu",
+                nav_offers: "Promocja -20%",
+                nav_contacts: "Kontakt",
+                hero_badge: "Przytulna Kawiarnia w Odessie • ul. Czarnomorska 23",
+                hero_title1: "Delikatny smak kawy &",
+                hero_title2: "klimat Odessy",
+                hero_desc: "Świeżo palona kawa, aksamitna matcha, kakao i autorska herbata. Wybierz rozmiar S/M/L, syropy, cynamon, wiórki czekoladowe oraz mleko roślinne!",
+                btn_menu: "Zobacz Menu",
+                btn_promo: "Rabat -20% przy zamówieniu 4-6 napojów",
+                highlight_1_title: "Rozmiary",
+                highlight_2_title: "Promocja",
+                highlight_3_title: "Dostawa",
+                hero_card_title: "Firmowa Banny Mokka",
+                hero_card_item_title: "Banny Special Mocha",
+                hero_card_item_desc: "Podwójne espresso, aksamitne mleko, belgijska czekolada i syrop kokosowy",
+                btn_quick_add: "Zamów Banny Special",
+                promo_badge: "Super Oferta",
+                promo_title: "Zamów od 4 do 6 napojów i uzyskaj 20% zniżki!",
+                promo_desc: "Spotkaj się ze znajomymi lub zamów kawę do biura! Rabat 20% nalicza się automatycznie w koszyku przy zamówieniu 4, 5 lub 6 napojów.",
+                promo_btn: "Wybierz 4-6 napojów",
+                menu_top_label: "Smaczne Menu",
+                menu_title: "Nasze Napoje",
+                menu_subtitle: "Wybierz swój ulubiony napój, dostosuj rozmiar i dodaj pyszne dodatki",
+                cat_all: "Wszystkie Napoje",
+                cat_coffee: "☕ Kawa",
+                cat_tea: "🍵 Herbata & Matcha",
+                cat_cocoa: "🍫 Kakao & Czekolada",
+                contacts_badge: "Odwiedź Nas",
+                contacts_title: "Zawsze Miło Widzieć Cię w Odessie!",
+                contacts_desc: "Czekamy na Ciebie przy ul. Czarnomorskiej 23. Приютна atmosfera, wyśmienita kawa i doskonały nastrój gwarantowane!",
+                addr_title: "Adres:",
+                addr_hours: "Godziny: Codziennie 08:00 - 21:00",
+                phone_title: "Telefon Menedżera:",
+                phone_subtitle: "Przyjmowanie zamówień i rezerwacji",
+                social_title: "Nasze Social Media:",
+                map_text: "Zapraszamy codziennie! Ciesz się przytulnym morskim klimatem z naszą firmową kawą.",
+                cart_title: "Twoje Zamówienie",
+                cart_subtitle: "coffi.banny.odessa",
+                cart_subtotal: "Suma częściowa:",
+                cart_discount: "Rabat Promocyjny (20%):",
+                cart_total: "Do zapłaty:",
+                btn_checkout: "Złóż Zamówienie",
+                checkout_title: "Szczegóły Zamówienia",
+                checkout_subtitle: "Wprowadź swoje dane, aby potwierdzić",
+                field_name: "Twoje Imię *",
+                field_phone: "Numer Telefonu *",
+                field_delivery: "Sposób Odbioru",
+                opt_pickup: "Odbiór osobisty (ul. Czarnomorska 23)",
+                opt_courier: "Dostawa kurierem w Odessie",
+                field_payment: "Płatność",
+                opt_cash: "Gotówka przy odbiorze",
+                opt_card: "Karta (Terminal/Online)",
+                field_notes: "Uwagi do zamówienia",
+                summary_items_count: "Liczba napojów:",
+                summary_final_total: "Razem:",
+                btn_confirm_order: "Potwierdź Zamówienie",
+                receipt_thanks: "Dziękujemy za Zamówienie!",
+                receipt_msg: "Twoje zamówienie zostało przyjęte. Menedżer przygotowuje kawę!",
+                btn_close_receipt: "Zamknij",
+                size_label: "Rozmiar kubka:",
+                addons_label: "Syropy i dodatki:",
+                addon_vanilla: "Syrop Waniliowy (+12₴)",
+                addon_caramel: "Syrop Karmelowy (+12₴)",
+                addon_hazelnut: "Syrop Orzechowy (+12₴)",
+                addon_coconut: "Syrop Kokosowy (+12₴)",
+                addon_cinnamon: "Cynamon (+0₴)",
+                addon_chocolate: "Wiórki Czekoladowe (+8₴)",
+                addon_sugar: "Cukier (+0₴)",
+                addon_ice: "Lód (+0₴)",
+                addon_plantmilk: "Mleko Roślinne (Owsiane/Migdałowe) (+18₴)",
+                btn_add_to_cart: "Dodaj do koszyka"
+            }
+        };
+
+        let currentLang = 'ua';
+
+        // --- MENU ITEMS CATALOGUE ---
+        const menuCatalogue = [
+            // Coffee
+            { id: 'espresso', cat: 'coffee', emoji: '☕', name: { ua: 'Еспресо', en: 'Espresso', pl: 'Espresso' }, desc: { ua: 'Класичний насичений кавовий шот', en: 'Classic rich espresso shot', pl: 'Klasyczny mocny zastrzyk kawy' }, basePrice: 40 },
+            { id: 'americano', cat: 'coffee', emoji: '☕', name: { ua: 'Американо', en: 'Americano', pl: 'Americano' }, desc: { ua: 'Еспресо, розбавлений гарячою водою', en: 'Espresso with hot water', pl: 'Espresso z dodatkiem gorącej wody' }, basePrice: 45 },
+            { id: 'cappuccino', cat: 'coffee', emoji: '☕', name: { ua: 'Капучино', en: 'Cappuccino', pl: 'Cappuccino' }, desc: { ua: 'Ідеальний баланс еспресо та збитого молока', en: 'Balanced espresso with velvety frothed milk', pl: 'Balans espresso i spienionego mleka' }, basePrice: 55 },
+            { id: 'latte', cat: 'coffee', emoji: '🥛', name: { ua: 'Лате', en: 'Caffe Latte', pl: 'Caffe Latte' }, desc: { ua: 'Ніжне збите молоко з еспресо', en: 'Smooth steamed milk over double espresso', pl: 'Delikatne spienione mleko z espresso' }, basePrice: 60 },
+            { id: 'flatwhite', cat: 'coffee', emoji: '☕', name: { ua: 'Флет Вайт', en: 'Flat White', pl: 'Flat White' }, desc: { ua: 'Подвійний еспресо з оксамитовою мікропіною', en: 'Double shot espresso with velvety microfoam', pl: 'Podwójne espresso z aksamitną pianką' }, basePrice: 65 },
+            { id: 'raf', cat: 'coffee', emoji: '✨', name: { ua: 'Раф Кава', en: 'Raf Coffee', pl: 'Kawa Raf' }, desc: { ua: 'Вершково-ванільна кавова насолода', en: 'Sweet creamy coffee blended with vanilla', pl: 'Śmietankowo-waniliowy napój kawowy' }, basePrice: 70 },
+            
+            // Tea & Matcha
+            { id: 'matchalatte', cat: 'tea', emoji: '🍵', name: { ua: 'Зелена Матча Лате', en: 'Green Matcha Latte', pl: 'Zielona Matcha Latte' }, desc: { ua: 'Японська зелена матча з ніжним молоком', en: 'Japanese ceremonial green matcha with milk', pl: 'Japońska zielona matcha z mlekiem' }, basePrice: 75 },
+            { id: 'bluematcha', cat: 'tea', emoji: '💙', name: { ua: 'Блакитна Матча', en: 'Blue Matcha Latte', pl: 'Niebieska Matcha Latte' }, desc: { ua: 'Квітки анчану з мигдальним або звичайним молоком', en: 'Butterfly pea flower tea with silky milk', pl: 'Kwiaty Klitorii ternateńskiej z mlekiem' }, basePrice: 80 },
+            { id: 'fruittea', cat: 'tea', emoji: '🫖', name: { ua: 'Авторський Фруктовий Чай', en: 'Signature Fruit Tea', pl: 'Autorska Herbata Owocowa' }, desc: { ua: "Мікс натуральних ягід, апельсину та м'яти", en: 'Natural berries mix with orange and fresh mint', pl: 'Mieszanka świeżych owoców i miętą' }, basePrice: 55 },
+            { id: 'greentea', cat: 'tea', emoji: '🌱', name: { ua: 'Зелений Чай Жасмин', en: 'Jasmine Green Tea', pl: 'Zielona Herbata Jaśmin' }, desc: { ua: 'Витончений зелений чай з пелюстками жасмину', en: 'Refined green tea with jasmine petals', pl: 'Aromatyczna zielona herbata z jaśminem' }, basePrice: 45 },
+
+            // Cocoa & Specials
+            { id: 'classiccocoa', cat: 'cocoa', emoji: '🍫', name: { ua: 'Класичне Какао', en: 'Classic Hot Cocoa', pl: 'Klasyczne Gorące Kakao' }, desc: { ua: 'Гаряче какао з натуральним шоколадом', en: 'Warm cocoa made with rich milk chocolate', pl: 'Gorące kakao z naturalną czekoladą' }, basePrice: 55 },
+            { id: 'hotchocolate', cat: 'cocoa', emoji: '🫗', name: { ua: 'Густий Гарячий Шоколад', en: 'Rich Hot Chocolate', pl: 'Gęsta Gorąca Czekolada' }, desc: { ua: 'Густий бельгійський шоколад зі збитими вершками', en: 'Thick Belgian chocolate with whipped cream', pl: 'Gęsta czekolada belgijska z bitą śmietaną' }, basePrice: 70 },
+            { id: 'banny_mocha', cat: 'cocoa', emoji: '🐰', name: { ua: 'Banny Special Mocha', en: 'Banny Special Mocha', pl: 'Banny Special Mocha' }, desc: { ua: 'Фірмова кава: еспресо, шоколад, кокосовий сироп', en: 'Signature mocha with espresso & coconut syrup', pl: 'Autorska mokka z espresso i syropem kokosowym' }, basePrice: 75 }
+        ];
+
+        // ADD-ONS DEFINITIONS
+        const addonsList = [
+            { id: 'vanilla', key: 'addon_vanilla', price: 12 },
+            { id: 'caramel', key: 'addon_caramel', price: 12 },
+            { id: 'hazelnut', key: 'addon_hazelnut', price: 12 },
+            { id: 'coconut', key: 'addon_coconut', price: 12 },
+            { id: 'cinnamon', key: 'addon_cinnamon', price: 0 },
+            { id: 'chocolate', key: 'addon_chocolate', price: 8 },
+            { id: 'sugar', key: 'addon_sugar', price: 0 },
+            { id: 'ice', key: 'addon_ice', price: 0 },
+            { id: 'plantmilk', key: 'addon_plantmilk', price: 18 }
+        ];
+
+        // SIZE SURCHARGES
+        const sizeRules = {
+            S: { extra: 0, label: 'S (250 ml)' },
+            M: { extra: 15, label: 'M (350 ml)' },
+            L: { extra: 30, label: 'L (450 ml)' }
+        };
+
+        // State Store
+        let cart = [];
+        let selectedSizesState = {};
+
+        // --- RENDER MENU ITEMS ---
+        function renderMenu(filterCat = 'all') {
+            const grid = document.getElementById('menuGrid');
+            grid.innerHTML = '';
+
+            const items = filterCat === 'all' 
+                ? menuCatalogue 
+                : menuCatalogue.filter(item => item.cat === filterCat);
+
+            items.forEach(item => {
+                if (!selectedSizesState[item.id]) {
+                    selectedSizesState[item.id] = 'M'; // Default to M
+                }
+                const currentSize = selectedSizesState[item.id];
+                const currentUnitPrice = item.basePrice + sizeRules[currentSize].extra;
+
+                const card = document.createElement('div');
+                card.className = 'glass-card rounded-3xl p-6 flex flex-col justify-between border border-pink-light/40 relative';
+
+                card.innerHTML = `
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-4xl drop-shadow-sm">${item.emoji}</span>
+                            <span class="text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full bg-khaki-100 text-khaki-800">${item.cat}</span>
+                        </div>
+
+                        <h3 class="text-lg font-extrabold text-gray-900 mb-1">${item.name[currentLang]}</h3>
+                        <p class="text-xs text-gray-500 mb-4 leading-snug">${item.desc[currentLang]}</p>
+
+                        <!-- Size Selector Buttons -->
+                        <div class="mb-4">
+                            <label class="block text-[11px] font-bold text-gray-600 uppercase mb-1.5">${translations[currentLang].size_label}</label>
+                            <div class="grid grid-cols-3 gap-2">
+                                <button type="button" onclick="changeDrinkSize('${item.id}', 'S')" class="size-btn-${item.id} py-1.5 rounded-xl border text-xs font-bold transition-all ${currentSize === 'S' ? 'border-pink-accent bg-pink-soft text-pink-deep shadow-sm' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}" data-size="S">S (250ml)</button>
+                                <button type="button" onclick="changeDrinkSize('${item.id}', 'M')" class="size-btn-${item.id} py-1.5 rounded-xl border text-xs font-bold transition-all ${currentSize === 'M' ? 'border-pink-accent bg-pink-soft text-pink-deep shadow-sm' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}" data-size="M">M (350ml)</button>
+                                <button type="button" onclick="changeDrinkSize('${item.id}', 'L')" class="size-btn-${item.id} py-1.5 rounded-xl border text-xs font-bold transition-all ${currentSize === 'L' ? 'border-pink-accent bg-pink-soft text-pink-deep shadow-sm' : 'border-gray-200 text-gray-700 hover:bg-gray-50'}" data-size="L">L (450ml)</button>
+                            </div>
+                        </div>
+
+                        <!-- Add-ons Collapsible -->
+                        <div class="mb-4">
+                            <details class="text-xs font-semibold text-gray-600 group">
+                                <summary class="cursor-pointer text-pink-deep hover:underline flex items-center justify-between py-1 select-none">
+                                    <span>${translations[currentLang].addons_label}</span>
+                                    <i class="fa-solid fa-chevron-down group-open:rotate-180 transition-transform"></i>
+                                </summary>
+                                <div class="grid grid-cols-1 gap-1.5 mt-2 pt-2 border-t border-gray-100 max-h-36 overflow-y-auto custom-scrollbar">
+                                    ${addonsList.map(a => `
+                                        <label class="flex items-center gap-2 cursor-pointer hover:bg-pink-soft/20 p-1 rounded-lg transition-colors">
+                                            <input type="checkbox" class="addon-cb-${item.id} rounded text-pink-accent focus:ring-pink-accent" value="${a.id}">
+                                            <span class="text-gray-700 text-xs">${translations[currentLang][a.key]}</span>
+                                        </label>
+                                    `).join('')}
+                                </div>
+                            </details>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-100 flex items-center justify-between mt-2">
+                        <div>
+                            <span class="text-[10px] text-gray-400 block font-bold uppercase">Ціна:</span>
+                            <span id="price-tag-${item.id}" class="text-xl font-extrabold text-khaki-700">${currentUnitPrice} ₴</span>
+                        </div>
+                        <button onclick="addToCart('${item.id}')" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-khaki to-pink-accent hover:from-khaki-700 hover:to-pink-deep text-white font-extrabold text-xs shadow hover:scale-[1.02] transition-all flex items-center gap-2">
+                            <i class="fa-solid fa-plus"></i>
+                            <span>${translations[currentLang].btn_add_to_cart}</span>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function changeDrinkSize(itemId, newSize) {
+            selectedSizesState[itemId] = newSize;
+            const drink = menuCatalogue.find(d => d.id === itemId);
+            const newPrice = drink.basePrice + sizeRules[newSize].extra;
+
+            const priceTag = document.getElementById(`price-tag-${itemId}`);
+            if (priceTag) priceTag.textContent = `${newPrice} ₴`;
+
+            const btns = document.querySelectorAll(`.size-btn-${itemId}`);
+            btns.forEach(btn => {
+                if (btn.getAttribute('data-size') === newSize) {
+                    btn.className = `size-btn-${itemId} py-1.5 rounded-xl border text-xs font-bold transition-all border-pink-accent bg-pink-soft text-pink-deep shadow-sm`;
+                } else {
+                    btn.className = `size-btn-${itemId} py-1.5 rounded-xl border text-xs font-bold transition-all border-gray-200 text-gray-700 hover:bg-gray-50`;
+                }
+            });
+        }
+
+        // --- ADD TO CART ---
+        function addToCart(itemId) {
+            const drink = menuCatalogue.find(d => d.id === itemId);
+            const size = selectedSizesState[itemId] || 'M';
+            const sizeExtra = sizeRules[size].extra;
+
+            // Checked Add-ons
+            const checkedBoxes = document.querySelectorAll(`.addon-cb-${itemId}:checked`);
+            const selectedAddons = [];
+            let addonsTotal = 0;
+
+            checkedBoxes.forEach(cb => {
+                const addon = addonsList.find(a => a.id === cb.value);
+                if (addon) {
+                    selectedAddons.push({
+                        id: addon.id,
+                        name: translations[currentLang][addon.key],
+                        price: addon.price
+                    });
+                    addonsTotal += addon.price;
+                }
+            });
+
+            const unitPrice = drink.basePrice + sizeExtra + addonsTotal;
+
+            // Unique key check for identical drink configuration
+            const existingIdx = cart.findIndex(c => 
+                c.id === itemId && 
+                c.size === size && 
+                JSON.stringify(c.addons) === JSON.stringify(selectedAddons)
+            );
+
+            if (existingIdx > -1) {
+                cart[existingIdx].quantity += 1;
+            } else {
+                cart.push({
+                    id: itemId,
+                    name: drink.name,
+                    emoji: drink.emoji,
+                    size: size,
+                    addons: selectedAddons,
+                    unitPrice: unitPrice,
+                    quantity: 1
+                });
+            }
+
+            updateCartState();
+            toggleCartDrawer(true);
+        }
+
+        function quickAddSpecial() {
+            cart.push({
+                id: 'banny_special',
+                name: { ua: 'Banny Special Mocha', en: 'Banny Special Mocha', pl: 'Banny Special Mocha' },
+                emoji: '🐰',
+                size: 'M',
+                addons: [{ id: 'coconut', name: translations[currentLang]['addon_coconut'], price: 12 }],
+                unitPrice: 75,
+                quantity: 1
+            });
+            updateCartState();
+            toggleCartDrawer(true);
+        }
+
+        function updateItemQuantity(index, delta) {
+            if (cart[index]) {
+                cart[index].quantity += delta;
+                if (cart[index].quantity <= 0) {
+                    cart.splice(index, 1);
+                }
+            }
+            updateCartState();
+        }
+
+        function clearCart() {
+            cart = [];
+            updateCartState();
+        }
+
+        // --- CART UI & DISCOUNT RULE CALCULATIONS ---
+        function updateCartState() {
+            const container = document.getElementById('cartItemsContainer');
+            const badge = document.getElementById('cartCountBadge');
+            const subtotalEl = document.getElementById('cartSubtotal');
+            const totalEl = document.getElementById('cartTotal');
+            const discountRow = document.getElementById('discountRow');
+            const discountAmountEl = document.getElementById('cartDiscountAmount');
+            const promoBanner = document.getElementById('cartPromoBanner');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            const totalDrinkCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            badge.textContent = totalDrinkCount;
+
+            container.innerHTML = '';
+            let subtotal = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-16 text-gray-400 space-y-2">
+                        <div class="text-6xl mb-2 opacity-50">☕🐰</div>
+                        <p class="text-sm font-bold text-gray-600">Кошик порожній</p>
+                        <p class="text-xs text-gray-400">Оберіть смачні напої з нашого меню!</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                checkoutBtn.disabled = false;
+
+                cart.forEach((item, index) => {
+                    const itemSubtotal = item.unitPrice * item.quantity;
+                    subtotal += itemSubtotal;
+
+                    const addonsStr = item.addons.length > 0 
+                        ? item.addons.map(a => a.name).join(', ')
+                        : 'Без додатків';
+
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'p-4 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-between gap-3 shadow-sm';
+                    itemDiv.innerHTML = `
+                        <div class="flex items-center gap-3">
+                            <span class="text-3xl">${item.emoji}</span>
+                            <div>
+                                <h4 class="font-extrabold text-gray-900 text-sm">${item.name[currentLang] || item.name['ua']} <span class="text-xs text-pink-deep">(${item.size})</span></h4>
+                                <p class="text-[11px] text-gray-500 max-w-[160px] truncate">${addonsStr}</p>
+                                <span class="text-xs font-bold text-khaki-700">${item.unitPrice} ₴ / шт</span>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-2">
+                            <div class="flex items-center bg-white border border-gray-200 rounded-xl shadow-sm">
+                                <button onclick="updateItemQuantity(${index}, -1)" class="w-7 h-7 text-gray-500 hover:text-pink-deep flex items-center justify-center font-bold text-xs">-</button>
+                                <span class="w-6 text-center text-xs font-extrabold text-gray-800">${item.quantity}</span>
+                                <button onclick="updateItemQuantity(${index}, 1)" class="w-7 h-7 text-gray-500 hover:text-pink-deep flex items-center justify-center font-bold text-xs">+</button>
+                            </div>
+                            <button onclick="updateItemQuantity(${index}, -${item.quantity})" class="text-gray-300 hover:text-red-500 p-1 transition-colors">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    `;
+                    container.appendChild(itemDiv);
+                });
+            }
+
+            // AUTOMATIC DISCOUNT RULE: 4 <= Total Drinks <= 6 gets 20% OFF
+            let discountAmount = 0;
+            const isDiscountEligible = totalDrinkCount >= 4 && totalDrinkCount <= 6;
+
+            if (isDiscountEligible) {
+                discountAmount = subtotal * 0.20;
+                discountRow.classList.remove('hidden');
+                discountAmountEl.textContent = `-${discountAmount.toFixed(0)} ₴`;
+
+                promoBanner.className = 'm-4 p-3.5 rounded-2xl text-xs font-semibold bg-emerald-100 text-emerald-800 border border-emerald-200 flex items-center gap-2 shadow-sm';
+                promoBanner.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-600 text-base"></i> 🎉 <strong>Акція -20% застосована!</strong> Ви обрали ${totalDrinkCount} напоїв!`;
+            } else if (totalDrinkCount > 0 && totalDrinkCount < 4) {
+                discountRow.classList.add('hidden');
+                promoBanner.className = 'm-4 p-3.5 rounded-2xl text-xs font-semibold bg-pink-soft text-pink-deep border border-pink-light flex items-center gap-2';
+                promoBanner.innerHTML = `<i class="fa-solid fa-lightbulb text-pink-accent text-base"></i> Додайте ще <strong>${4 - totalDrinkCount}</strong> напої, щоб отримати <strong>знижку 20%</strong>!`;
+            } else {
+                discountRow.classList.add('hidden');
+                promoBanner.className = 'm-4 p-3.5 rounded-2xl text-xs font-semibold bg-gray-100 text-gray-600 border border-gray-200';
+                promoBanner.innerHTML = `💡 Замовляйте від 4 до 6 напоїв та отримуйте знижку 20%!`;
+            }
+
+            const finalTotal = subtotal - discountAmount;
+            subtotalEl.textContent = `${subtotal.toFixed(0)} ₴`;
+            totalEl.textContent = `${finalTotal.toFixed(0)} ₴`;
+
+            // Update Modal Summaries
+            document.getElementById('summaryCount').textContent = totalDrinkCount;
+            document.getElementById('summaryTotal').textContent = `${finalTotal.toFixed(0)} ₴`;
+        }
+
+        // --- DRAWER & MODAL TOGGLES ---
+        function toggleCartDrawer(show) {
+            const drawer = document.getElementById('cartDrawer');
+            if (show) {
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function openCheckoutModal() {
+            toggleCartDrawer(false);
+            document.getElementById('checkoutFormStep').classList.remove('hidden');
+            document.getElementById('checkoutSuccessStep').classList.add('hidden');
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+        }
+
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const deliverySelect = document.getElementById('custDelivery');
+            const deliveryText = deliverySelect.options[deliverySelect.selectedIndex].text;
+            const finalTotal = document.getElementById('summaryTotal').textContent;
+
+            // Fill Receipt
+            document.getElementById('recName').textContent = name;
+            document.getElementById('recPhone').textContent = phone;
+            document.getElementById('recDelivery').textContent = deliveryText;
+            document.getElementById('recNum').textContent = `#${Math.floor(1000 + Math.random() * 9000)}`;
+            document.getElementById('recTotal').textContent = finalTotal;
+
+            const recList = document.getElementById('recItemsList');
+            recList.innerHTML = '';
+            cart.forEach(c => {
+                const itemP = document.createElement('div');
+                itemP.className = 'flex justify-between text-[11px]';
+                itemP.innerHTML = `<span>${c.quantity}x ${c.name[currentLang] || c.name['ua']} (${c.size})</span><span class="font-bold">${c.unitPrice * c.quantity} ₴</span>`;
+                recList.appendChild(itemP);
+            });
+
+            document.getElementById('checkoutFormStep').classList.add('hidden');
+            document.getElementById('checkoutSuccessStep').classList.remove('hidden');
+        }
+
+        // --- CATEGORY FILTERING ---
+        function filterMenu(cat) {
+            document.querySelectorAll('.cat-btn').forEach(btn => {
+                if (btn.getAttribute('data-cat') === cat) {
+                    btn.className = "cat-btn active px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-khaki text-white shadow-md";
+                } else {
+                    btn.className = "cat-btn px-5 py-2.5 rounded-2xl font-bold text-xs sm:text-sm transition-all bg-white text-gray-700 hover:bg-pink-soft/50 border border-gray-200";
+                }
+            });
+            renderMenu(cat);
+        }
+
+        // --- LANGUAGE SWITCHER ---
+        function changeLanguage(lang) {
+            currentLang = lang;
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+            renderMenu();
+            updateCartState();
+        }
+
+        // Initial Load Event
+        window.onload = function() {
+            renderMenu('all');
+            updateCartState();
+        };
+    </script>
+</body>
+</html>
